@@ -1,0 +1,88 @@
+/*---------------------------LIBRARY STYLING----------------------------------*/
+.library-books-filter-container{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap:30px;
+  width: 80%;
+  margin: auto;
+}
+
+.books-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  
+  grid-gap: 10px;
+  grid-row-gap: 30px;
+  padding-top: 50px;
+  width: 100%;
+  margin: auto;
+  max-height: 80vh;
+  overflow-y: scroll;
+  overflow-x: visible;
+}
+
+.book-container{
+  width: 180px;
+  height: 300px;
+  align-items: start;
+  border-radius: 5px;
+}
+.book-image-wrapper{
+  width: 100%;
+  height: 90%;
+}
+.book-image-wrapper img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.book-content-wrapper{
+  width: 100%;
+  height: 10%;
+}
+.library-announcement{
+  background-color: #333;
+  color: #fff;
+  width: 100%;
+  height: 80px;
+  border-radius: 6px;
+}
+/*---------------------------NAVIGATION STYLING----------------------------------*/
+.logo-search{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search-bar{
+  width: 300px;
+  height: 33px;
+  border-radius: 6px;
+  margin-right: 24px;
+}
+/*---------------------------Book STYLING----------------------------------*/
+.book-content-container{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 20px;
+}
+.book-image{
+  width: 300px;
+  height: 400px;
+}
+.book-image img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.bottom{
+  display: flex;
+  justify-content: space-between;
+}
+.bottom-isbn , .bottom-price{
+ width: 80%;
+ padding: 10px;
+ border-radius: 6px;
+ text-align: start;
+}
