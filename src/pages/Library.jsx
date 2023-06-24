@@ -1,8 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import books from "./Books";
 import { Link } from "react-router-dom";
 
 function Library() {
+  const renderedCategories = [];
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const topCategories = books.slice(0, 5).reduce((acc, book) => {
+    if (!acc.includes(book.category)) {
+      acc.push(book.category);
+    }
+    return acc;
+  }, []);
+
+  const handleSelectAllCategories = () => {
+    if (selectedCategories.length === renderedCategories.length) {
+      setSelectedCategories([]);
+    } else {
+      setSelectedCategories(renderedCategories);
+    }
+  };
+  const handleCategoryChange = (category) => {
+    // Check if the category is already selected
+    if (selectedCategories.includes(category)) {
+      // If selected, remove the category from the selectedCategories array
+      setSelectedCategories(
+        selectedCategories.filter((cat) => cat !== category)
+      );
+    } else {
+      // If not selected, add the category to the selectedCategories array
+      setSelectedCategories([...selectedCategories, category]);
+    }
+  };
+  const handleCategoryClicked = (category) => {
+    setSelectedCategories(category);
+  };
+  const filteredBooks =
+    selectedCategories.length > 0
+      ? books.filter((book) => selectedCategories.includes(book.category))
+      : books;
+
+      const getCategoryCount = (category) => {
+        return books.filter((book) => book.category === category).length;
+      };
   return (
     <div className="library-books-filter-container my-5">
       <div className="categories-filter-container my-3">
@@ -10,33 +49,15 @@ function Library() {
           <div className="top-categories-buttons my-3">
             <div className="library-announcement my-4"></div>
             <h6>Top Categories</h6>
-            <button className="btn m-1 btn-secondary text-light">
-              fiction
-            </button>
-            <button className="btn m-1 btn-secondary text-light">
-              fiction
-            </button>
-            <button className="btn m-1 btn-secondary text-light">
-              fiction
-            </button>
-            <button className="btn m-1 btn-secondary text-light">
-              fiction
-            </button>
-            <button className="btn m-1 btn-secondary text-light">
-              fiction
-            </button>
-            <button className="btn m-1 btn-secondary text-light">
-              fiction
-            </button>
-            <button className="btn m-1 btn-secondary text-light">
-              fiction
-            </button>
-            <button className="btn m-1 btn-secondary text-light">
-              fiction
-            </button>
-            <button className="btn m-1 btn-secondary text-light">
-              fiction
-            </button>
+            {topCategories.map((category, index) => (
+              <button
+                className="btn m-1 btn-secondary text-light"
+                key={index}
+                onClick={() => handleCategoryClicked(category)}
+              >
+                {category} ({getCategoryCount(category)})
+              </button>
+            ))}
           </div>
         </div>
         <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -60,10 +81,53 @@ function Library() {
               data-bs-parent="#accordionFlushExample"
             >
               <div class="accordion-body">
-                Placeholder content for this accordion, which is intended to
-                demonstrate the <code>.accordion-flush</code> class. This is the
-                second item's accordion body. Let's imagine this being filled
-                with some actual content.
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="flexRadioDefault1"
+                  />
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Most viewed
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="flexRadioDefault2"
+                    checked
+                  />
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Recommended
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="flexRadioDefault2"
+                    checked
+                  />
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Top Rated
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="flexRadioDefault2"
+                    checked
+                  />
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Editors choice
+                  </label>
+                </div>
               </div>
             </div>
           </div>
@@ -87,12 +151,47 @@ function Library() {
               data-bs-parent="#accordionFlushExample"
             >
               <div class="accordion-body">
-                Placeholder content for this accordion, which is intended to
-                demonstrate the <code>.accordion-flush</code> class. This is the
-                third item's accordion body. Nothing more exciting happening
-                here in terms of content, but just filling up the space to make
-                it look, at least at first glance, a bit more representative of
-                how this would look in a real-world application.
+                <div className="form-check" key="selectAll">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="selectAllCheckbox"
+                    checked={
+                      selectedCategories.length === renderedCategories.length
+                    }
+                    onChange={handleSelectAllCategories}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="selectAllCheckbox"
+                  >
+                    Select All
+                  </label>
+                </div>
+                {books.map((book, index) => {
+                  if (!renderedCategories.includes(book.category)) {
+                    renderedCategories.push(book.category);
+                    return (
+                      <div className="form-check" key={index}>
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id={`defaultCheck${index}`}
+                          onChange={() => handleCategoryChange(book.category)}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor={`defaultCheck${index}`}
+                        >
+                          {book.category} ({getCategoryCount(book.category)})
+                        </label>
+                      </div>
+                    );
+                  }
+                  return null;
+                })}
               </div>
             </div>
           </div>
@@ -100,7 +199,7 @@ function Library() {
       </div>
 
       <div className="books-wrapper">
-        {books.map((book, index) => (
+        {filteredBooks.map((book, index) => (
           <Link
             key={index}
             to={`${book.title}`}

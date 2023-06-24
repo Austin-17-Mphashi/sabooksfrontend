@@ -10,20 +10,19 @@
 .books-wrapper {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  
   grid-gap: 10px;
   grid-row-gap: 30px;
   padding-top: 50px;
   width: 100%;
   margin: auto;
-  max-height: 80vh;
+  max-height: 100vh;
   overflow-y: scroll;
-  overflow-x: visible;
+  overflow-x: hidden;
 }
 
 .book-container{
-  width: 180px;
-  height: 300px;
+  width: 150px;
+  height: 260px;
   align-items: start;
   border-radius: 5px;
 }

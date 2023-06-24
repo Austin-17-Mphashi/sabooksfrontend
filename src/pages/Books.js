@@ -9,7 +9,7 @@ const books = [
       description: 'Description 1',
       retailPrice: 10.99,
       isbn: 'ISBN-1',
-      image:'https://picsum.photos/200/300',
+      image:'https://picsum.photos/200/30',
       book_id:v4(),
 
     },
@@ -21,7 +21,7 @@ const books = [
       description: 'Description 2',
       retailPrice: 12.99,
       isbn: 'ISBN-2',
-      image:'https://picsum.photos/200/300',
+      image:'https://picsum.photos/200/50',
       book_id:v4(),
     },
     {
@@ -32,7 +32,7 @@ const books = [
       description: 'Description 3',
       retailPrice: 8.99,
       isbn: 'ISBN-3',
-      image:'https://picsum.photos/200/300',
+      image:'https://picsum.photos/50/300',
       book_id:v4(),
     },
     {
@@ -43,7 +43,7 @@ const books = [
       description: 'Description 4',
       retailPrice: 14.99,
       isbn: 'ISBN-4',
-      image:'https://picsum.photos/200/300',
+      image:'https://picsum.photos/100/100',
       book_id:v4(),
     },
     {
@@ -54,7 +54,7 @@ const books = [
       description: 'Description 5',
       retailPrice: 9.99,
       isbn: 'ISBN-5',
-      image:'https://picsum.photos/200/300',
+      image:'https://picsum.photos/300/300',
       book_id:v4(),
     },
     {
@@ -65,7 +65,7 @@ const books = [
       description: 'Description 6',
       retailPrice: 11.99,
       isbn: 'ISBN-6',
-      image:'https://picsum.photos/200/300',
+      image:'https://picsum.photos/200/400',
       book_id:v4(),
     },
     {
@@ -76,7 +76,7 @@ const books = [
       description: 'Description 7',
       retailPrice: 7.99,
       isbn: 'ISBN-7',
-      image:'https://picsum.photos/200/300',
+      image:'https://picsum.photos/400/300',
       book_id:v4(),
     },
     {
@@ -87,7 +87,7 @@ const books = [
       description: 'Description 8',
       retailPrice: 13.99,
       isbn: 'ISBN-8',
-      image:'https://picsum.photos/200/300',
+      image:'https://picsum.photos/200/100',
       book_id:v4(),
     },
     {
@@ -98,7 +98,7 @@ const books = [
       description: 'Description 9',
       retailPrice: 15.99,
       isbn: 'ISBN-9',
-      image:'https://picsum.photos/200/300',
+      image:'https://picsum.photos/200/200',
       book_id:v4(),
     },
     {
@@ -109,7 +109,7 @@ const books = [
       description: 'Description 10',
       retailPrice: 10.49,
       isbn: 'ISBN-10',
-      image:'https://picsum.photos/200/300',
+      image:'https://picsum.photos/100/300',
       book_id:v4(),
     },
   ];
