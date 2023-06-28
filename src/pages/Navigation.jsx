@@ -142,7 +142,7 @@ function Navigation() {
         <div className="container px-2 px-lg-2 my-2">
           <div className="logo-search text-light">
             <h2 className="display-5 text-success">SA Books</h2>
-            <input type="search" name="" id="" className="search-bar" placeholder="Books , Author , Publisher ..." />
+            <input type="search" name="" id="" className="search-bar" placeholder="Books , Author , Publisher " />
           </div>
         </div>
       </header>

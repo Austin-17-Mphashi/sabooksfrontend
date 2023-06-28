@@ -202,7 +202,7 @@ function Library() {
         {filteredBooks.map((book, index) => (
           <Link
             key={index}
-            to={`${book.title}`}
+            to={`${book.book_id}`}
             state={{ data: book }}
             style={{ textDecoration: "none", color: "inherit" }}
             className="book-container"
