@@ -1,11 +1,16 @@
-import React, { useState } from "react";
-import books from "./Books";
+import React, { useState,useContext } from "react";
+import BookContext from "./Context/BooksContext";
+//import books from "./Books";
 import { Link } from "react-router-dom";
 
 function Library() {
+  const { bookList } = useContext(BookContext);
+
+  console.log(bookList)
+  let books = bookList
   const renderedCategories = [];
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const topCategories = books.slice(0, 5).reduce((acc, book) => {
+  const topCategories = books?.slice(0, 5).reduce((acc, book) => {
     if (!acc.includes(book.category)) {
       acc.push(book.category);
     }
@@ -13,21 +18,21 @@ function Library() {
   }, []);
 
   const handleSelectAllCategories = () => {
-    if (selectedCategories.length === renderedCategories.length) {
+    if (selectedCategories?.length === renderedCategories.length) {
       setSelectedCategories([]);
     } else {
       setSelectedCategories(renderedCategories);
     }
   };
   const handleCategoryChange = (category) => {
-    // Check if the category is already selected
-    if (selectedCategories.includes(category)) {
-      // If selected, remove the category from the selectedCategories array
+    
+    if (selectedCategories?.includes(category)) {
+      
       setSelectedCategories(
-        selectedCategories.filter((cat) => cat !== category)
+        selectedCategories?.filter((cat) => cat !== category)
       );
     } else {
-      // If not selected, add the category to the selectedCategories array
+      
       setSelectedCategories([...selectedCategories, category]);
     }
   };
@@ -36,31 +41,32 @@ function Library() {
   };
   const filteredBooks =
     selectedCategories.length > 0
-      ? books.filter((book) => selectedCategories.includes(book.category))
+      ? books?.filter((book) => selectedCategories?.includes(book.category))
       : books;
 
       const getCategoryCount = (category) => {
-        return books.filter((book) => book.category === category).length;
+        return books?.filter((book) => book.category === category).length;
       };
   return (
-    <div className="library-books-filter-container my-5">
-      <div className="categories-filter-container my-3">
-        <div>
-          <div className="top-categories-buttons my-3">
-            <div className="library-announcement my-4"></div>
+    <div className=" my-5 library-container">
+      <div className="library-filter-container" >
+        <div >
+          <div className="notice-img">
+          </div>
+          <div className="my-2">
             <h6>Top Categories</h6>
-            {topCategories.map((category, index) => (
+            {topCategories?.map((category, index) => (
               <button
-                className="btn m-1 btn-secondary text-light"
                 key={index}
                 onClick={() => handleCategoryClicked(category)}
+                className="btn btn-outline-primary m-1"
               >
-                {category} ({getCategoryCount(category)})
+                {category} <span className="text-danger">{getCategoryCount(category)}</span>
               </button>
             ))}
           </div>
         </div>
-        <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="my-2 accordion accordion-flush" id="accordionFlushExample">
           <div class="accordion-item">
             <h2 class="accordion-header" id="flush-headingTwo">
               <button
@@ -131,7 +137,7 @@ function Library() {
               </div>
             </div>
           </div>
-          <div class="accordion-item">
+          <div class="accordion-item my-2">
             <h2 class="accordion-header" id="flush-headingThree">
               <button
                 class="accordion-button collapsed"
@@ -153,7 +159,7 @@ function Library() {
               <div class="accordion-body">
                 <div className="form-check" key="selectAll">
                   <input
-                    className="form-check-input"
+                    
                     type="checkbox"
                     value=""
                     id="selectAllCheckbox"
@@ -163,26 +169,26 @@ function Library() {
                     onChange={handleSelectAllCategories}
                   />
                   <label
-                    className="form-check-label"
+                    
                     htmlFor="selectAllCheckbox"
                   >
                     Select All
                   </label>
                 </div>
-                {books.map((book, index) => {
+                {books?.map((book, index) => {
                   if (!renderedCategories.includes(book.category)) {
                     renderedCategories.push(book.category);
                     return (
-                      <div className="form-check" key={index}>
+                      <div  key={index}>
                         <input
-                          className="form-check-input"
+                         
                           type="checkbox"
                           value=""
                           id={`defaultCheck${index}`}
                           onChange={() => handleCategoryChange(book.category)}
                         />
                         <label
-                          className="form-check-label"
+                          
                           htmlFor={`defaultCheck${index}`}
                         >
                           {book.category} ({getCategoryCount(book.category)})
@@ -198,21 +204,22 @@ function Library() {
         </div>
       </div>
 
-      <div className="books-wrapper">
-        {filteredBooks.map((book, index) => (
+      <div className="library-books-container">
+        {filteredBooks?.map((book, index) => (
           <Link
             key={index}
             to={`${book.book_id}`}
             state={{ data: book }}
             style={{ textDecoration: "none", color: "inherit" }}
-            className="book-container"
+            className="library-book"
           >
-            <div className="book-image-wrapper">
+            <div>
               <img src={book.image} alt="..." />
             </div>
-            <div className="book-content-wrapper">
-              <p className="p-0 m-0">{book.title}</p>
-              <small className="p-0 m-0">{book.author}</small>
+            <div className="book-content">
+              <small className="text-primary">{book.title}</small>
+              <br/>
+              <small>{book.author}</small>
             </div>
           </Link>
         ))}
