@@ -26,7 +26,10 @@ function Navbar() {
           <Link to='/library' style={{textDecoration:"none"}} >Library</Link>
         </a>
 				<a href="/#">
-          <Link to='/' style={{textDecoration:"none"}} >Home</Link>
+          <Link to='/membership' style={{textDecoration:"none"}} >Membership</Link>
+        </a>
+		<a href="/#">
+          <Link to='/contact' style={{textDecoration:"none"}} >Contact</Link>
         </a>
 				<button
 					className="nav-btn nav-close-btn"

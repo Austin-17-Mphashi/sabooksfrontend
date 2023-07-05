@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Library from './pages/Library'
 import About from './pages/About'
+import Membership from './pages/Membership';
+import Contact from './pages/Contact';
 import Navigation from './pages/Navigation';
 import Navbar from './pages/Navigation';
 import Book from './pages/Book';
@@ -18,6 +20,8 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About/>} />
           <Route path='/library' element={<Library />} />
+          <Route path='/membership' element={<Membership />} />
+          <Route path='/contact' element={<Contact />} />
           <Route path='/library/:book' element={<Book/>} />
         </Routes>
         </BookProvider>
